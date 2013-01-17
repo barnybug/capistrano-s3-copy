@@ -11,8 +11,9 @@ module Capistrano
           super(config)
 
           s3cmd_vars = []
-          ["aws_access_key_id", "aws_secret_access_key"].each do |var|
-            value = configuration[var.to_sym]
+          defaults = {:aws_calling_format => 'REGULAR'}
+          ["aws_access_key_id", "aws_secret_access_key", "aws_calling_format"].each do |var|
+            value = configuration[var.to_sym] || defaults[var.to_sym]
             raise Capistrano::Error, "Missing configuration[:#{var}] setting" if value.nil?
             s3cmd_vars << "#{var.upcase}=#{value}"
           end

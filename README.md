@@ -41,6 +41,11 @@ Finally, we need to indicate which bucket to store the packages in:
 
     set :aws_releases_bucket, 'mybucket-deployments'
 
+Optionally, the calling format for S3 can be set to 'SUBDOMAIN' as is necessary
+for non-US S3 buckets.
+
+    set :aws_calling_format, 'SUBDOMAIN'
+
 The package will be stored in S3 prefixed with a rails_env that was set in capistrano:
 
 e.g.
